@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+
+        *{
+            font-family:'Segoe UI';
+            font-weight:100;
+        }
+
+
+        .pagesWrapper{
+            width:100%;
+        }
+
+        .pages{
+            float:right;
+            display:flex;
+        }
+
+        h3{
+            margin-right:20px;
+            cursor:pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="pagesWrapper">
+        <div class="pages">
+            <h3><a href="getData.html">25 Matches</a></h3>
+            <h3><a href="second.html">Another 25 Matches</a></h3>
+            <h3><a href="third.html">Another 25 Matches</a></h3>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload = getUser; 
+
+        async function getUser() {
+            const response = await axios.get('https://api.cricapi.com/v1/matches?apikey=de7337c9-0c74-4523-bcd7-2a4855f95e7f&offset=67');
+            //console.log(response);
+            console.log(response.data.data);
+
+            const data = response.data.data; 
+            /*data.map((d) => {
+                console.log(d.name)
+            })*/
+
+
+
+            for (i = 0; i < data.length; i++) {
+                console.log(data[i].name)
+            }
+            
+        }
+    </script>
+</body>
+</html>
